@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/fragments :: head(#{lt.codeacademy.psgames.user.form.title})"></head>
+<body>
+<nav th:replace="fragments/fragments :: navigation"></nav>
+<div class="container main-area">
+  <h3 th:text="#{lt.codeacademy.psgames.user.form.title}"></h3>
+  <form method="post" th:object="${user}" th:action="@{/public/users/save}">
+    <div th:replace="fragments/fragments :: inputWitherrorHandler('floatingInputName', 'name', ${user.name ne null}, #{lt.codeacademy.psgames.user.form.name}, 'text', false)"></div>
+    <div th:replace="fragments/fragments :: inputWitherrorHandler('floatingInputSurname', 'surname', ${user.surname ne null}, #{lt.codeacademy.psgames.user.form.surname}, 'text', false)"></div>
+    <div th:replace="fragments/fragments :: inputWitherrorHandler('floatingInputUsername', 'username', ${user.username ne null}, #{lt.codeacademy.psgames.user.form.username}, 'text', false)"></div>
+    <div th:replace="fragments/fragments :: inputWitherrorHandler('floatingInputEmail', 'email', ${user.email ne null}, #{lt.codeacademy.psgames.user.form.email}, 'text', false)"></div>
+    <div th:replace="fragments/fragments :: inputWitherrorHandler('floatingInputCountry', 'country', ${user.country ne null}, #{lt.codeacademy.psgames.user.form.country}, 'text', false)"></div>
+    <div th:replace="fragments/fragments :: inputWitherrorHandler('floatingInputCity', 'city', ${user.city ne null}, #{lt.codeacademy.psgames.user.form.city}, 'text', false)"></div>
+    <div th:replace="fragments/fragments :: inputWitherrorHandler('floatingInputStreet', 'street', ${user.street ne null}, #{lt.codeacademy.psgames.user.form.street}, 'text', false)"></div>
+    <div th:replace="fragments/fragments :: inputWitherrorHandler('floatingInputPostCode', 'postCode', ${user.postCode ne null}, #{lt.codeacademy.psgames.user.form.postCode}, 'text', false)"></div>
+    <div th:replace="fragments/fragments :: inputWitherrorHandler('floatingInputPhone', 'phone', ${user.phone ne null}, #{lt.codeacademy.psgames.user.form.phone}, 'text', false)"></div>
+    <div th:replace="fragments/fragments :: inputWitherrorHandler('floatingInputPassword', 'password', ${user.password ne null}, #{lt.codeacademy.psgames.user.form.password}, 'password', true)"></div>
+    <div th:replace="fragments/fragments :: inputWitherrorHandler('floatingInputRepeatPassword', 'repeatPassword', ${user.repeatPassword ne null}, #{lt.codeacademy.psgames.user.form.repeatPassword}, 'password', true)"></div>
+    <button type="submit"
+            class="btn btn-outline-primary"
+            th:text="#{lt.codeacademy.psgames.user.form.button}"></button>
+  </form>
+</div>
+
+</body>
+<footer th:replace="fragments/fragments :: footer"></footer>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"><head th:replace="fragments/fragments :: head(#{lt.codeacademy.psgames.games.title})"></head>
+<body>
+<nav th:replace="fragments/fragments :: navigation"></nav>
+
+<div class="container main-area">
+    <div th:replace="fragments/fragments :: notification(${not gamesByPage.hasContent()}, 'alert-info', #{lt.codeacademy.psgames.games.message.empty.games})"> </div>
+
+    <div th:if="${gamesByPage.hasContent()}">
+        <table class="table table-striped table-hover">
+            <thead class="table-primary">
+            <tr1 class="table-secondary"></tr1>
+            <tr>
+                <th th:replace=" fragments/fragments :: sortableColumn('col-2', 'name', #{lt.codeacademy.psgames.games.name})"></th>
+                <th th:replace=" fragments/fragments :: sortableColumn('col-1', 'genre', #{lt.codeacademy.psgames.games.genre})"></th>
+                <th th:replace=" fragments/fragments :: sortableColumn('col-1', 'price', #{lt.codeacademy.psgames.games.price})"></th>
+                <th th:replace=" fragments/fragments :: sortableColumn('col-7', 'response', #{lt.codeacademy.psgames.games.response})"></th>
+                <th class="col-1"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="game : ${gamesByPage.content}">
+                <td>
+                    <a th:href="@{/public/games/{id}(id=${game.id})}" th:text="${game.name}"></a>
+                </td>
+                <td th:text="${game.genre}"></td>
+                <td th:text="${game.price}"></td>
+                <td th:text="${game.response}"></td>
+                <td>
+                    <div class="float-end">
+                        <a sec:authorize="hasRole('ADMIN')"
+                           th:href="@{/games/{id}/delete(id=${game.id})}" class="text-danger">
+                            <i class="bi bi-trash2"></i>
+                        </a>
+                    </div>
+                    <div class="float-end">
+                        <a sec:authorize="hasRole('ADMIN')"
+                           th:href="@{/games/{id}/update(id=${game.id})}" class="text-danger">
+                            <i class="bi bi-check2-square"></i>
+                        </a>
+                    </div>
+
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8" th:insert="fragments/fragments :: paginator"></div>
+            <div class="col-2 text-end">
+                <span th:text="#{lt.codeacademy.psgames.games.paginator.total.games(${gamesByPage.totalElements})}"/>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<footer th:replace="fragments/fragments :: footer"></footer>
+</html>

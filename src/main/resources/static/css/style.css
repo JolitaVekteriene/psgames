@@ -1,0 +1,17 @@
+html, body {
+	height: 100%;
+}
+
+.main-area {
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+.user-name {
+	padding: 4px 16px 4px 16px;
+}
+
+.footer {
+	position: sticky;
+	top: 100vh;
+}
